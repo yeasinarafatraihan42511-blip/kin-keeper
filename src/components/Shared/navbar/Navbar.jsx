@@ -3,9 +3,16 @@ import { NavLink } from 'react-router';
 import vector from '../../../assets/vector.png';
 import clock from '../../../assets/clock.png';
 import chartline from '../../../assets/chartline.png';
+import { Link } from 'react-router';
+import { AiTwotoneHome } from "react-icons/ai";
 
 
 const Navbar = () => {
+    const links = [
+        { to: "/", label: "Home", icon: vector },
+        { to: "/timeline", label: "Timeline", icon: clock },
+        { to: "/stats", label: "Stats", icon: chartline }
+    ];
     return (
         <div className="navbar bg-base-100 shadow px-6 container mx-auto bg-white">
             {/* Left - Logo */}
@@ -22,14 +29,14 @@ const Navbar = () => {
                             isActive ? "text-white font-bold btn btn-active bg-amber-900 " : "btn"
                         }
                     >
-                        <img src={vector} alt="Vector" /> <span>Home</span>
+                       <AiTwotoneHome /> <span>Home</span>
                     </NavLink>
                 </div>
 
-                <NavLink to="/timeline" className="btn">
+                <NavLink to={links[1].to} className="btn">
                     <img src={clock} alt="Clock" /> <span>Timeline</span>
                 </NavLink>
-                <NavLink to="/stats" className="btn">
+                <NavLink to={links[2].to} className="btn">
                     <img src={chartline} alt="Chart Line" /> <span>Stats</span>
                 </NavLink>
             </div>
