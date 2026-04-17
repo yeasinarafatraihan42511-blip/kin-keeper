@@ -2,13 +2,23 @@
 import React, { use, useEffect, useState } from 'react';
 
 import { useNavigate, useParams } from 'react-router';
+import { IoCallSharp } from "react-icons/io5";
+import { BsFillCameraReelsFill } from "react-icons/bs";
+import { BiMessageDots } from "react-icons/bi";
+import { MdDelete } from "react-icons/md";
+import { FaClock } from "react-icons/fa";
+import { FaBoxArchive } from "react-icons/fa6";
+import { toast } from 'react-toastify';
+
+
+
 const FriendDetails = () => {
-  const { id } = useParams(); // URL থেকে id
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const [friend, setFriend] = useState(null);
 
-  // 🔹 Data load
+
   useEffect(() => {
     fetch("/Friend.json")
       .then(res => res.json())
@@ -18,21 +28,22 @@ const FriendDetails = () => {
       });
   }, [id]);
 
-  // 🔥 Handle click (core logic)
+
   const handleAction = (type) => {
     const newEntry = {
       id: Date.now(),
-      type: type, // call / text / video
+      type: type,
       name: friend.name,
       date: new Date().toLocaleDateString()
     };
 
-    // 🔹 LocalStorage এ save (timeline data)
+
     const existing = JSON.parse(localStorage.getItem("timeline")) || [];
     localStorage.setItem("timeline", JSON.stringify([...existing, newEntry]));
 
-    // 🔹 Timeline page এ redirect
-    navigate("/timeline");
+
+   toast.success("Entry added to timeline!");
+   navigate("/timeline");
   };
 
   if (!friend) return <p className="text-center mt-10">Loading...</p>;
@@ -40,7 +51,7 @@ const FriendDetails = () => {
   return (
     <div className="max-w-6xl mx-auto p-6 grid md:grid-cols-2 gap-6">
 
-      {/* 🔵 LEFT SIDE */}
+
       <div className="card bg-base-100 shadow p-6 text-center">
         <img
           src={friend.picture}
@@ -50,39 +61,38 @@ const FriendDetails = () => {
 
         <h2 className="text-xl font-bold mt-4">{friend.name}</h2>
 
-        {/* Status */}
-        <p className={`mt-2 font-semibold ${
-          friend.status === "overdue"
-            ? "text-red-500"
+
+        <p className={`mt-2 font-semibold  ${friend.status === "overdue"
+            ? "btn btn-active bg-red-500 text-white rounded-3xl w-fit flex justify-center"
             : friend.status === "almost due"
-            ? "text-yellow-500"
-            : "text-green-500"
-        }`}>
+              ? "btn btn-active bg-yellow-500 text-white rounded-3xl w-fit"
+              : "btn btn-active bg-green-900 text-white rounded-3xl w-fit flex justify-center text-center"
+          }`}>
           {friend.status}
         </p>
 
-        {/* Tags */}
+
         <div className="flex justify-center gap-2 mt-2 flex-wrap">
           {friend.tags.map((tag, i) => (
-            <span key={i} className="badge badge-outline">{tag}</span>
+            <span key={i} className="rounded-3xl btn btn-active bg-amber-50  text-amber-950">{tag}</span>
           ))}
         </div>
 
         <p className="mt-3 text-sm opacity-70">{friend.bio}</p>
         <p className="text-sm mt-1">{friend.email}</p>
 
-        {/* Action buttons */}
+
         <div className="mt-4 space-y-2">
-          <button className="btn w-full">⏰ Snooze 2 Weeks</button>
-          <button className="btn w-full">📦 Archive</button>
-          <button className="btn btn-error w-full">🗑️ Delete</button>
+          <button className="btn w-full"><FaClock /> Snooze 2 Weeks</button>
+          <button className="btn w-full"><FaBoxArchive /> Archive</button>
+          <button className="btn btn-error w-full"><MdDelete /> Delete</button>
         </div>
       </div>
 
-      {/* 🔵 RIGHT SIDE */}
+
       <div className="space-y-6">
 
-        {/* Stats */}
+
         <div className="grid grid-cols-3 gap-4">
           <div className="card p-4 text-center shadow">
             <h3 className="text-xl font-bold">{friend.days_since_contact}</h3>
@@ -101,41 +111,45 @@ const FriendDetails = () => {
         </div>
 
         {/* Relationship Goal */}
-        <div className="card p-4 shadow flex justify-between items-center">
+        <div className="card p-4 shadow flex justify-between  ">
           <div>
             <h3 className="font-semibold">Relationship Goal</h3>
             <p className="text-sm opacity-70">
               Connect every <span className="font-bold">{friend.goal} days</span>
             </p>
           </div>
-          <button className="btn btn-sm">Edit</button>
+          <div>
+            <button className="btn btn-sm">Edit</button>
+          </div>
+
+
         </div>
 
-        {/* 🔥 Quick Check-In */}
+
         <div className="card p-4 shadow">
           <h3 className="font-semibold mb-4">Quick Check-In</h3>
 
           <div className="grid grid-cols-3 gap-4">
 
-            <button 
+            <button
               onClick={() => handleAction("call")}
               className="btn flex flex-col"
             >
-              📞 Call
+              <div className='flex gap-4 items-center'>{<IoCallSharp />} Call</div>
             </button>
 
-            <button 
+            <button
               onClick={() => handleAction("text")}
               className="btn flex flex-col"
             >
-              💬 Text
+              <div className='flex gap-4 items-center'>{<BiMessageDots />} Text</div>
             </button>
 
-            <button 
+            <button
               onClick={() => handleAction("video")}
               className="btn flex flex-col"
             >
-              🎥 Video
+              <div className='flex gap-4 items-center'>{<BsFillCameraReelsFill />} Video</div>
             </button>
 
           </div>
@@ -251,21 +265,21 @@ export default FriendDetails;
 
 //           <div className="grid grid-cols-3 gap-4">
 
-//             <button 
+//             <button
 //               onClick={() => handleAction("call")}
 //               className="btn flex flex-col"
 //             >
 //               📞 Call
 //             </button>
 
-//             <button 
+//             <button
 //               onClick={() => handleAction("text")}
 //               className="btn flex flex-col"
 //             >
 //               💬 Text
 //             </button>
 
-//             <button 
+//             <button
 //               onClick={() => handleAction("video")}
 //               className="btn flex flex-col"
 //             >

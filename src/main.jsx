@@ -6,6 +6,7 @@ import MainLayout from './layout/MainLayout'
 
 import { router } from './routes/Routes'
 import { BrowserRouter } from 'react-router'
+import { ToastContainer } from 'react-toastify'
 
 
 
@@ -18,4 +19,5 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router} />
   </StrictMode>,
+  <ToastContainer />
 )

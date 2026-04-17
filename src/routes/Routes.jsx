@@ -19,10 +19,12 @@ export const router = createBrowserRouter([
         index: true,
         element: <Homepage />
       },
-      {
+       {
         path: "/timeline",
         element: <Timeline />
       },
+  
+      
       {
         path: "/stats",
         element: <Analytics />
@@ -31,7 +33,8 @@ export const router = createBrowserRouter([
     path: "/friendDetails/:id",
     // element: <FriendDetails />
     Component: FriendDetails
-  }
+  },
+  
   
 
 
@@ -43,6 +46,6 @@ export const router = createBrowserRouter([
     path: "/*",
     element: <ErrorPage />
   },
-  
+ 
 
 ])

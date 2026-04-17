@@ -1,16 +1,95 @@
-# React + Vite
+# 👥 KeenKeeper — Keep Your Friendships Alive
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Project Description
 
-Currently, two official plugins are available:
+KeenKeeper is a simple and user-friendly web application designed to help users maintain meaningful relationships. It allows users to track their friends, monitor interaction frequency, and stay connected through timely reminders.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Users can view their friends, check interaction history, and perform quick actions like call, text, or video, which are automatically logged in a timeline.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+##  Live Features
 
-## Expanding the ESLint configuration
+###  Core Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+*  View all friends in a clean card layout
+*  See detailed information of each friend
+*  Track days since last contact
+*  Set and view relationship goals
+*  Quick Check-In (Call, Text, Video)
+*  Automatic Timeline logging of interactions
+
+---
+
+###  Advanced Features
+
+*  Timeline page showing interaction history
+*  Filter interactions (Call / Text / Video)
+*  Friendship Analytics (Pie Chart using Recharts)
+*  Toast notifications on interaction
+*  404 Page for invalid routes
+*  Loading spinner while fetching data
+
+---
+
+##  Technologies Used
+
+ Technology              Purpose                        
+ React.js                Frontend UI                    
+ React Router DOM        Page navigation                
+ Tailwind CSS + DaisyUI  Styling & responsiveness       
+ Recharts                Data visualization (Pie Chart) 
+ LocalStorage            Store timeline data            
+---
+
+##  Project Structure
+
+```
+src/
+ ├── components/
+ ├── pages/
+ ├── data/
+ ├── layouts/
+ ├── routes/
+```
+
+---
+
+##  Responsive Design
+
+The application is fully responsive and works smoothly on:
+
+* Mobile devices 
+* Tablets 
+* Desktop 
+
+---
+
+##  Deployment
+
+The project can be deployed using:
+
+* Vercel
+* Netlify
+* Cloudflare Pages
+
+---
+
+##  Key Highlights
+
+* Clean UI based on Figma design
+* Dynamic data handling
+* Real-time interaction tracking
+* Beginner-friendly but scalable structure
+
+---
+
+## Author
+
+Developed by **Yeasin**
+
+---
+
+##  Final Note
+
+This project demonstrates practical React skills including routing, state management, dynamic rendering, and UI design — making it a solid portfolio project.
