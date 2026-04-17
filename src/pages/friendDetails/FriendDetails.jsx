@@ -62,7 +62,8 @@ const FriendDetails = () => {
         <h2 className="text-xl font-bold mt-4">{friend.name}</h2>
 
 
-        <p className={`mt-2 font-semibold  ${friend.status === "overdue"
+        <div className="flex justify-center items-center gap-2 mt-2">
+          <p className={`mt-2 font-semibold  ${friend.status === "overdue"
             ? "btn btn-active bg-red-500 text-white rounded-3xl w-fit flex justify-center"
             : friend.status === "almost due"
               ? "btn btn-active bg-yellow-500 text-white rounded-3xl w-fit"
@@ -70,6 +71,7 @@ const FriendDetails = () => {
           }`}>
           {friend.status}
         </p>
+        </div>
 
 
         <div className="flex justify-center gap-2 mt-2 flex-wrap">
@@ -111,14 +113,14 @@ const FriendDetails = () => {
         </div>
 
         {/* Relationship Goal */}
-        <div className="card p-4 shadow flex justify-between  ">
+        <div className="card p-4 shadow flex justify-between items-center">
           <div>
             <h3 className="font-semibold">Relationship Goal</h3>
             <p className="text-sm opacity-70">
               Connect every <span className="font-bold">{friend.goal} days</span>
             </p>
           </div>
-          <div>
+          <div className='flex gap-2'>
             <button className="btn btn-sm">Edit</button>
           </div>
 
