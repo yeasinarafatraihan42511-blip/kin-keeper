@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router';
 
 const Friend = () => {
 
@@ -18,12 +19,12 @@ useEffect(() => {
       <div className='grid md:grid-cols-4 gap-6'>
         
         {friends.map((friend) => (
-          <div key={friend.id} className="card bg-base-100 shadow-sm">
+        <Link key={friend.id} to={`/friendDetails/${friend.id}`} className="card bg-base-100 shadow-sm">
             
             {/* Image */}
             <figure className="px-6 pt-6">
               <img
-                src={friend.picture}   // ✅ dynamic image
+                src={friend.picture}   // 
                 alt={friend.name}
                 className="rounded-full h-32 w-32 object-cover"
               />
@@ -60,7 +61,7 @@ useEffect(() => {
               </p>
 
             </div>
-          </div>
+          </Link>
         ))}
 
       </div>
