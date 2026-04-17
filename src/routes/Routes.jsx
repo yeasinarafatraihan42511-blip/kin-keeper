@@ -5,6 +5,7 @@ import Card from "../pages/homepage/card/Card";
 
 import ErrorPage from "../pages/homepage/ErrorPage/ErrorPage";
 import Timeline from "../pages/timeline/timeline";
+import Stats from "../pages/stats/Stats";
 
  export const router = createBrowserRouter([
   {
@@ -19,13 +20,19 @@ import Timeline from "../pages/timeline/timeline";
         path: "/timeline",
         element:<Timeline />
       },
-      {}
+      {
+        path: "/stats",
+        element:<Stats />
+      },
+      
 
     ],
     errorElement: <ErrorPage/>
   },
-  {
-    path: '/about',
-    element:"This is the about page.",
-  }
+  
+   {
+        path: "/*",
+        element:<ErrorPage />
+      }
+  
 ])
