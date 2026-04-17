@@ -1,14 +1,14 @@
-import React from 'react';
+// import React from 'react';
 
-const Timeline = () => {
-    return (
-        <div>
-            <h2>Timeline</h2>
-        </div>
-    );
-};
+// const Timeline = () => {
+//     return (
+//         <div>
+//             <h2>Timeline</h2>
+//         </div>
+//     );
+// };
 
-export default Timeline;
+// export default Timeline;
 // import { useEffect, useState } from "react";
 
 // const Timeline = () => {
@@ -62,3 +62,66 @@ export default Timeline;
 // };
 
 // export default Timeline;
+import React, { useEffect, useState } from "react";
+
+const Timeline = () => {
+  const [data, setData] = useState([]);
+  const [filter, setFilter] = useState("all");
+
+  useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem("timeline")) || [];
+    setData(stored);
+  }, []);
+
+  const filtered =
+    filter === "all" ? data : data.filter((d) => d.type === filter);
+
+  const icon = {
+    call: "📞",
+    text: "💬",
+    video: "🎥",
+    meetup: "🤝",
+  };
+
+  return (
+    <div className="max-w-4xl mx-auto p-6">
+
+      {/* Title */}
+      <h1 className="text-3xl font-bold mb-4">Timeline</h1>
+
+      {/* Filter */}
+      <select
+        className="select select-bordered mb-6 w-60"
+        onChange={(e) => setFilter(e.target.value)}
+      >
+        <option value="all">Filter timeline</option>
+        <option value="call">Call</option>
+        <option value="text">Text</option>
+        <option value="video">Video</option>
+      </select>
+
+      {/* List */}
+      <div className="space-y-4">
+        {filtered.map((item) => (
+          <div
+            key={item.id}
+            className="bg-white border rounded-xl p-4 flex items-center gap-4 shadow-sm"
+          >
+            <div className="text-2xl">{icon[item.type]}</div>
+
+            <div>
+              <p className="font-semibold">
+                {item.type.charAt(0).toUpperCase() +
+                  item.type.slice(1)}{" "}
+                with {item.name}
+              </p>
+              <p className="text-sm text-gray-500">{item.date}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Timeline;

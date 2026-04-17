@@ -5,9 +5,10 @@ import Card from "../pages/homepage/card/Card";
 
 import ErrorPage from "../pages/homepage/ErrorPage/ErrorPage";
 import Timeline from "../pages/timeline/timeline";
-import Stats from "../pages/stats/Stats";
+
 import Friend from "../pages/friends/Friend";
 import FriendDetails from "../pages/friendDetails/FriendDetails";
+import Analytics from "../pages/stats/Stats";
 
 export const router = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/stats",
-        element: <Stats />
+        element: <Analytics />
       },
       {
     path: "/friendDetails/:id",

@@ -16,7 +16,7 @@ const Navbar = () => {
         { to: "/stats", label: "Stats", icon: TfiStatsUp },
     ];
     return (
-        <div className="navbar bg-base-100 shadow px-6 container mx-auto bg-white">
+        <div className="navbar bg-base-100 shadow px-12  bg-white">
             {/* Left - Logo */}
             <div className="flex-1">
                 <h1 className="text-xl font-bold">Keen<span className="text-green-800">Keeper</span></h1>
